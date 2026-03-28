@@ -14,3 +14,10 @@ echo "[*] 2b: Activando Suricata (backup y edición de /etc/suricata/suricata.ya
 # Corre ahora
 sudo cp /etc/suricata/suricata.yaml /etc/suricata/suricata.yaml.bak.$(date +%F-%H%M%S)
 sudo sed -i 's/enabled: no/enabled: yes/g' /etc/suricata/suricata.yaml
+echo "[*] 3/5: Estructurando el entorno Fintech Sur para el usuario 'benjamin'..."
+
+USER_HOME="/home/benjamin"
+WORK_DIR="$USER_HOME/fintech_sur"
+
+sudo -u benjamin mkdir -p $WORK_DIR/{logs,red_simulada,scripts}
+sudo -u benjamin touch $WORK_DIR/logs/suricata_eve.json
