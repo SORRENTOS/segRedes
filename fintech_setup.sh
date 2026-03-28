@@ -28,3 +28,9 @@ def ofuscar_datos(log_crudo):
 if __name__ == "__main__":
     print("Módulo DLP iniciado.")
 PYEOF
+# Script 2: Cliente API async
+sudo -u benjamin bash -c "cat > $WORK_DIR/scripts/2_cliente_api.py" << 'PYEOF'
+import aiohttp, asyncio, os
+from dotenv import load_dotenv
+# TODO: Conexión asíncrona a la API.
+PYEOF
