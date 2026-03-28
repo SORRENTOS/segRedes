@@ -9,3 +9,8 @@ echo "[*] 2/5: Instalando SOC (Suricata, Docker, Python3)..."
 
 # Instala ahora
 sudo apt-get install -y -qq python3-pip python3-venv suricata docker.io docker-compose curl git jq software-properties-common
+echo "[*] 2b: Activando Suricata (backup y edición de /etc/suricata/suricata.yaml)..."
+
+# Corre ahora
+sudo cp /etc/suricata/suricata.yaml /etc/suricata/suricata.yaml.bak.$(date +%F-%H%M%S)
+sudo sed -i 's/enabled: no/enabled: yes/g' /etc/suricata/suricata.yaml
