@@ -39,3 +39,12 @@ sudo -u benjamin bash -c "cat > $WORK_DIR/.env.example" << 'ENVEOF'
 LLM_API_KEY=ingrese_su_llave_aqui
 LLM_API_URL=https://api.groq.com/openai/v1/chat/completions
 ENVEOF
+# Red simulada (docker-compose v3)
+sudo -u benjamin bash -c "cat > $WORK_DIR/red_simulada/docker-compose.yml" << 'YAMLEOF'
+version: '3'
+services:
+  servidor_web_vulnerable:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+YAMLEOF
