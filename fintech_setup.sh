@@ -21,3 +21,10 @@ WORK_DIR="$USER_HOME/fintech_sur"
 
 sudo -u benjamin mkdir -p $WORK_DIR/{logs,red_simulada,scripts}
 sudo -u benjamin touch $WORK_DIR/logs/suricata_eve.json
+sudo -u benjamin bash -c "cat > $WORK_DIR/scripts/1_motor_dlp.py" << 'PYEOF'
+import re, json
+def ofuscar_datos(log_crudo):
+    pass # TODO: Implementar lógica Ley 21.719
+if __name__ == "__main__":
+    print("Módulo DLP iniciado.")
+PYEOF
