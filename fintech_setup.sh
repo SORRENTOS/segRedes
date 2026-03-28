@@ -34,3 +34,8 @@ import aiohttp, asyncio, os
 from dotenv import load_dotenv
 # TODO: Conexión asíncrona a la API.
 PYEOF
+# Archivo de variables de entorno ejemplo
+sudo -u benjamin bash -c "cat > $WORK_DIR/.env.example" << 'ENVEOF'
+LLM_API_KEY=ingrese_su_llave_aqui
+LLM_API_URL=https://api.groq.com/openai/v1/chat/completions
+ENVEOF
