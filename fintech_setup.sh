@@ -84,3 +84,12 @@ sudo netplan apply
 sudo systemctl restart suricata
 sudo systemctl enable docker
 sudo systemctl start docker
+#! VERIFICACION DE SERVICIOS
+# Docker en ejecución
+systemctl is-active docker
+
+# Suricata en ejecución
+systemctl status suricata --no-pager -l | sed -n '1,15p'
+
+# Interfaz de red host-only (debe aparecer enp0s8 con IP)
+ip -4 addr show enp0s8 || ip a
