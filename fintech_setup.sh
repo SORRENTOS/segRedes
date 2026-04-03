@@ -57,3 +57,30 @@ echo "[*] 4/5: Compilando Entorno Virtual Python..."
 sudo -u benjamin python3 -m venv /home/benjamin/fintech_sur/.venv
 sudo -u benjamin /home/benjamin/fintech_sur/.venv/bin/pip install --quiet --upgrade pip
 sudo -u benjamin /home/benjamin/fintech_sur/.venv/bin/pip install --quiet requests aiohttp python-dotenv pydantic netmiko regex
+
+
+
+
+echo "[*] 5/5: Aplicando Hardening y configuraciones del servicio..."
+
+# Asegurar que benjamin sea el dueño de sus archivos
+sudo chown -R benjamin:benjamin /home/benjamin/fintech_sur
+
+# Permitir que benjamin use Docker sin ser root
+sudo usermod -aG docker benjamin
+
+# Configuración netplan para interfaz host-only enp0s8
+sudo bash -c 'cat > /etc/netplan/99-hostonly.yaml' << 'NETEOF'
+network:
+  version: 2
+  ethernets:
+    enp0s8:
+      dhcp4: true
+NETEOF
+
+sudo netplan apply
+
+# Reiniciar y habilitar servicios
+sudo systemctl restart suricata
+sudo systemctl enable docker
+sudo systemctl start docker
