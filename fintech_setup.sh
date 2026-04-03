@@ -21,6 +21,7 @@ WORK_DIR="$USER_HOME/fintech_sur"
 
 sudo -u benjamin mkdir -p $WORK_DIR/{logs,red_simulada,scripts}
 sudo -u benjamin touch $WORK_DIR/logs/suricata_eve.json
+#Creacion Motor Dlp
 sudo -u benjamin bash -c "cat > $WORK_DIR/scripts/1_motor_dlp.py" << 'PYEOF'
 import re, json
 def ofuscar_datos(log_crudo):
@@ -48,3 +49,11 @@ services:
     ports:
       - "8080:80"
 YAMLEOF
+
+
+echo "[*] 4/5: Compilando Entorno Virtual Python..."
+
+# Corre ahora
+sudo -u benjamin python3 -m venv /home/benjamin/fintech_sur/.venv
+sudo -u benjamin /home/benjamin/fintech_sur/.venv/bin/pip install --quiet --upgrade pip
+sudo -u benjamin /home/benjamin/fintech_sur/.venv/bin/pip install --quiet requests aiohttp python-dotenv pydantic netmiko regex
